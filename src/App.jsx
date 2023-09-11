@@ -1,3 +1,5 @@
+import "./index.css";
+import "./output.css";
 import { useState } from "react";
 import Login from "./views/login";
 import Home from "./views/home";
