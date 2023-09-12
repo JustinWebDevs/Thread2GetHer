@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import registerUser from "../functions/registerUser";
 import loginWithEmail from "../functions/loginWithEmail";
@@ -6,6 +7,8 @@ import loginWithGoogle from "../functions/loginWithGoogle.js";
 export default function login() {
   const [logginIn, setLogginIn] = useState(true);
 
+  const history = useNavigate();
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -13,7 +16,9 @@ export default function login() {
     const password = e.target.password.value;
 
     logginIn
-      ? await loginWithEmail(email, password)
+      ? await loginWithEmail(email, password).then(() => {
+          history("/home");
+        })
       : await registerUser(email, password);
   };
 
