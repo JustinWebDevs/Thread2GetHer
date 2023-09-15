@@ -1,0 +1,12 @@
+{
+    "profile": "Profile",
+    "spanish": "Spanish",
+    "english": "English",
+    "language": "Language",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "loginWithGoogle": "Login with Google",
+    "email": "Email",
+    "password": "Password"
+}
