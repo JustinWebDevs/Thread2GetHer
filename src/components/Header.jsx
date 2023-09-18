@@ -1,8 +1,12 @@
-import { useState } from "react";
-import { Navbar } from "./Navbar";
+import { useState, useEffect } from "react";
+import { Sidebar } from "./Sidebar";
 
 export function Header() {
-  const [showNavbar, setShowNavbar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  useEffect(() => {
+    setShowSidebar(true);
+  }, [showSidebar]);
 
   return (
     <>
@@ -11,13 +15,12 @@ export function Header() {
           className="profile rounded-full bg-red-400 w-12 h-12"
           style={{ cursor: "pointer" }}
           onClick={() => {
-            setShowNavbar(!showNavbar);
-          }}
-        ></div>
+            setShowSidebar(!showSidebar);
+          }}></div>
         <h1 className=" text-lg lg:text-3xl">Thread2GetHer</h1>
         <h1 className="text-xl">Buscar</h1>
       </div>
-      {showNavbar ? <Navbar /> : null}
+      <Sidebar showSidebar={showSidebar} />
     </>
   );
 }
