@@ -67,6 +67,32 @@ export function Sidebar(propSidebar) {
       </div>
     </>
   ) : (
-    <></>
+    <>
+      <div
+        className={`bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 ${
+          showSidebar ? "" : "hidden"
+        } `}
+        onClick={() => {
+          setShowSidebar(!showSidebar);
+        }}></div>
+      <div
+        className={`bg-gray-800 text-white h-screen fixed top-0 left-0 overflow-y-auto transition ease-in-out delay-150 ${
+          showSidebar ? "w-64" : "w-0"
+        }`}>
+        <div className="p-4">
+          <a href="#" className="text-2xl font-semibold">
+            Thread2GetHer
+          </a>
+        </div>
+        <ul className="py-4">
+          <li className="px-4 py-2 hover:bg-gray-700">
+            <Link to="login">{t("login")}</Link>
+          </li>
+          <li className="px-4 py-2 hover:bg-gray-700">
+            <Link to="login">{t("register")}</Link>
+          </li>
+        </ul>
+      </div>
+    </>
   );
 }
