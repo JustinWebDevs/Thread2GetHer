@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Sidebar } from "./Sidebar";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { fas } from "@fortawesome/free-solid-svg-icons";
+import { BiSearchAlt } from "react-icons/bi";
 
 export function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -14,10 +13,11 @@ export function Header() {
           style={{ cursor: "pointer" }}
           onClick={() => {
             setShowSidebar(!showSidebar);
-          }}></div>
+          }}
+        ></div>
         <h1 className=" text-2xl font-semibold">Thread2GetHer</h1>
-        <h1 className="text-xl">
-          {/* <FontAwesomeIcon icon={[fas, "user-secret"]} /> */}
+        <h1 className="text-xl flex justify-content-center align-items-center">
+          <BiSearchAlt style={{ marginTop: "5px" }} />
           Buscar
         </h1>
       </div>
@@ -28,7 +28,8 @@ export function Header() {
           } `}
           onClick={() => {
             setShowSidebar(!showSidebar);
-          }}></div>
+          }}
+        ></div>
         <Sidebar showSidebar={showSidebar} />
       </div>
     </>
