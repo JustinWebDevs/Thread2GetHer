@@ -1,26 +1,13 @@
-import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import loginWithEmail from "../functions/loginWithEmail";
+import registerUser from "../functions/registerUser";
 import loginWithGoogle from "../functions/loginWithGoogle.js";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { auth } from "../firebase/connections";
-import { onAuthStateChanged } from "firebase/auth";
 
-export default function Login() {
+export default function Register() {
   const { t } = useTranslation(["translation"]);
 
   const history = useNavigate();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        history("/home");
-      } else {
-        // setUser(null);
-      }
-    });
-  }, []);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -28,9 +15,8 @@ export default function Login() {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    await loginWithEmail(email, password).then(() => {
-      history("/home");
-    });
+    await registerUser(email, password);
+    history("/login");
   };
 
   return (
@@ -40,7 +26,7 @@ export default function Login() {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ type: "spring", duration: 0.5 }}
     >
-      <h1 className="text-3xl font-bold mb-4">{t("login")}</h1>
+      <h1 className="text-3xl font-bold mb-4">{t("register")}</h1>
       <form onSubmit={submitHandler} className="mb-4">
         <input
           type="text"
@@ -58,12 +44,12 @@ export default function Login() {
           type="submit"
           className="w-full mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
         >
-          Login
+          {t("register")}
         </button>
       </form>
-      <Link className="text-blue-500 cursor-pointer" to="/register">
+      <Link className="text-blue-500 cursor-pointer" to="/login">
         {" "}
-        {t("register")}
+        {t("login")}
       </Link>
       <button
         onClick={async () =>

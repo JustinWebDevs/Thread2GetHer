@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
 import { Sidebar } from "./Sidebar";
 import { BiSearchAlt } from "react-icons/bi";
+import { motion } from "framer-motion";
 
 export function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
+  const variants = {
+    open: { opacity: 1, x: 0 },
+    closed: { opacity: 0, x: "-100%" },
+  };
 
   return (
     <>
@@ -21,7 +26,27 @@ export function Header() {
           Buscar
         </h1>
       </div>
-      <div>
+
+      {/* <motion.nav animate={showSidebar ? "open" : "closed"} variants={variants}>
+        <Sidebar showSidebar={showSidebar} />
+      </motion.nav> */}
+
+      <motion.div animate={showSidebar ? "open" : "closed"} variants={variants}>
+        <div
+          // initial={{ opacity: 0 }}
+          // animate={{ opacity: 0.5 }}
+          // transition={{ duration: 0.5 }}
+          className={`bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0`}
+          // className={`bg-gray-900 dark:bg-opacity-80 fixed inset-0`}
+          style={{ height: "100vw" }}
+          onClick={() => {
+            setShowSidebar(!showSidebar);
+          }}
+        ></div>
+        <Sidebar showSidebar={showSidebar} />
+      </motion.div>
+
+      {/* <div>
         <div
           className={`bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 ${
             showSidebar ? "" : "hidden"
@@ -31,7 +56,7 @@ export function Header() {
           }}
         ></div>
         <Sidebar showSidebar={showSidebar} />
-      </div>
+      </div> */}
     </>
   );
 }

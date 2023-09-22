@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import logOut from "../functions/logOut";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export function Sidebar(propSidebar) {
   const { t } = useTranslation(["translation"]);
@@ -33,7 +34,8 @@ export function Sidebar(propSidebar) {
       <div
         className={`bg-gray-800 text-white h-screen fixed top-0 left-0 overflow-y-auto transition ease-in-out delay-150 ${
           showSidebar ? "w-64" : "w-0"
-        }`}>
+        }`}
+      >
         <div className="p-4">
           <a href="#" className="text-2xl font-semibold">
             Thread2GetHer
@@ -53,7 +55,7 @@ export function Sidebar(propSidebar) {
               Cambiar idioma
             </a>
           </li>
-          <li className="px-4 py-2 hover:bg-gray-700" onClick={logOut}>
+          <li className="px-4 py-2 hover:bg-gray-700" onClick={() => logOut()}>
             {t("logout")}
           </li>
         </ul>
@@ -61,10 +63,14 @@ export function Sidebar(propSidebar) {
     </>
   ) : (
     <>
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
         className={`bg-gray-800 text-white h-screen fixed top-0 left-0 overflow-y-auto transition ease-in-out delay-150 ${
           showSidebar ? "w-64" : "w-0"
-        }`}>
+        }`}
+      >
         <div className="p-4">
           <a href="#" className="text-2xl font-semibold">
             Thread2GetHer
@@ -72,13 +78,13 @@ export function Sidebar(propSidebar) {
         </div>
         <ul className="py-4">
           <li className="px-4 py-2 hover:bg-gray-700">
-            <Link to="login">{t("login")}</Link>
+            <Link to="/login">{t("login")}</Link>
           </li>
           <li className="px-4 py-2 hover:bg-gray-700">
-            <Link to="login">{t("register")}</Link>
+            <Link to="/login">{t("register")}</Link>
           </li>
         </ul>
-      </div>
+      </motion.div>
     </>
   );
 }
