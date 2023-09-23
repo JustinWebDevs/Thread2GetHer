@@ -4,12 +4,10 @@ import { onAuthStateChanged } from "firebase/auth";
 import { Link } from "react-router-dom";
 import logOut from "../functions/logOut";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 export function Sidebar(propSidebar) {
   const { t } = useTranslation(["translation"]);
-  const history = useNavigate();
 
   const [user, setUser] = useState(null);
 
@@ -34,8 +32,7 @@ export function Sidebar(propSidebar) {
       <div
         className={`bg-gray-800 text-white h-screen fixed top-0 left-0 overflow-y-auto transition ease-in-out delay-150 ${
           showSidebar ? "w-64" : "w-0"
-        }`}
-      >
+        }`}>
         <div className="p-4">
           <a href="#" className="text-2xl font-semibold">
             Thread2GetHer
@@ -67,8 +64,7 @@ export function Sidebar(propSidebar) {
         transition={{ duration: 0.5 }}
         className={`bg-gray-800 text-white h-screen fixed top-0 left-0 overflow-y-auto transition ease-in-out delay-150 ${
           showSidebar ? "w-64" : "w-0"
-        }`}
-      >
+        }`}>
         <div className="p-4">
           <a href="#" className="text-2xl font-semibold">
             Thread2GetHer

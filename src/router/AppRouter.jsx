@@ -4,6 +4,7 @@ import Home from "../pages/home";
 import Login from "../pages/login";
 import Profile from "../pages/Profile";
 import Register from "../pages/Register";
+import FirstLogin from "../pages/firstLogin";
 
 export const AppRouter = () => {
   return (
@@ -16,6 +17,7 @@ export const AppRouter = () => {
       <Route path="/register" element={<Register />} />
 
       <Route path="/profile" element={<Profile />} />
+      <Route path="/firstLogin" element={<FirstLogin />} />
     </Routes>
   );
 };
