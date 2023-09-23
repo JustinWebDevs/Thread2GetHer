@@ -10,6 +10,11 @@ export function Header() {
     closed: { opacity: 0, x: "-100%" },
   };
 
+  const transition = {
+    type: "tween", 
+    duration: 0.2,
+  };
+
   return (
     <>
       <div className="header p-2 flex flex-row justify-between items-center sticky top-0 bg-gray-600 text-white ">
@@ -31,14 +36,13 @@ export function Header() {
         <Sidebar showSidebar={showSidebar} />
       </motion.nav> */}
 
-      <motion.div animate={showSidebar ? "open" : "closed"} variants={variants}>
+      <motion.div animate={showSidebar ? "open" : "closed"} variants={variants} transition={transition}>
         <div
           // initial={{ opacity: 0 }}
           // animate={{ opacity: 0.5 }}
           // transition={{ duration: 0.5 }}
-          className={`bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0`}
+          className={`bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 h-screen`}
           // className={`bg-gray-900 dark:bg-opacity-80 fixed inset-0`}
-          style={{ height: "100vw" }}
           onClick={() => {
             setShowSidebar(!showSidebar);
           }}
