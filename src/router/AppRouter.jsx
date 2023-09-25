@@ -11,14 +11,14 @@ export const AppRouter = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         {/* <Route path="home" element={<Home />} /> */}
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/firstLogin" element={<FirstLogin />} />
+
         <Route path="home/:userId" element={<Home />} />
       </Route>
 
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/firstLogin" element={<FirstLogin />} />
     </Routes>
   );
 };

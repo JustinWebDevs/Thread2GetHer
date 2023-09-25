@@ -3,11 +3,14 @@ import "./index.css";
 import "./output.css";
 import { AppRouter } from "./router/AppRouter";
 import "./config/i18next.config";
+import { UserProvider } from "./context/userContext";
 
 function App() {
   return (
     <Suspense fallback="Cargando traducciones">
-      <AppRouter />
+      <UserProvider>
+        <AppRouter />
+      </UserProvider>
     </Suspense>
   );
 }

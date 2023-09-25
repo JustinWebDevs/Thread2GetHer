@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { db } from "../firebase/connections";
 import { doc, setDoc } from "firebase/firestore";
 import { useLocation, useNavigate } from "react-router-dom";
-// import { useParams } from "react-router-dom";
+import { UserContext } from "../context/userContext";
 
 export default function FirstLogin() {
+  const { saveUser } = useContext(UserContext);
+
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [canSave, setCanSave] = useState(false);
@@ -31,8 +33,13 @@ export default function FirstLogin() {
         age: 20,
       });
       history(`/home/${name}-${lastName}`);
+      let data = {
+        name,
+        lastName,
+      };
       // En caso se puedan perder datos de alguna forma, se pueden grabar de manera local
-      localStorage.setItem("personalInfo", `${name}-${lastName}`);
+      // localStorage.setItem("personalInfo", `${name}-${lastName}`);
+      saveUser(data);
       console.log(docRef);
     } catch (e) {
       console.error("Error adding document: ", e);

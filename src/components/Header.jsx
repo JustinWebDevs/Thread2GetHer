@@ -17,7 +17,7 @@ export function Header() {
 
   return (
     <>
-      <div className="header p-2 flex flex-row justify-between items-center sticky top-0 bg-gray-600 text-white ">
+      <div className="header p-2 flex flex-row justify-between items-center sticky top-0 bg-gray-600 text-white">
         <div
           className="profile rounded-full bg-red-400 w-12 h-12"
           style={{ cursor: "pointer" }}
