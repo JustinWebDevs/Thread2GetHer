@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { UserContext } from "../context/userContext";
+import Thread from "../components/Thread";
 
 export default function Profile() {
   const { user, saveUser } = useContext(UserContext);
@@ -39,7 +40,12 @@ export default function Profile() {
   };
 
   return (
-    <div className="h-screen" style={{ padding: "5px 10px" }}>
+    <div
+      className="container-profile"
+      style={{
+        minHeight: "100vh",
+      }}
+    >
       <h1 className="text-3xl font-bold mb-3">{t("profile")}</h1>
 
       <h2 className="text-2xl font-bold mb-3">Language</h2>
@@ -47,15 +53,11 @@ export default function Profile() {
         {t("language")}:{" "}
         {getCurrentLanguage() === "en" ? t("english") : t("spanish")}
       </p>
-      <div
-        className="flex"
-        style={{ maxWidth: "50%", justifyContent: "space-evenly" }}
-      >
+      <div className="flex justify-evenly mw-50">
         <button
           className={`${
             language === "es" ? "bg-gray-600" : "bg-gray-500"
-          } text-white text-base font-medium transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200`}
-          style={{ borderRadius: "20px", padding: "5px 10px", width: "40%" }}
+          } text-white text-base font-medium container-profile w-40-p rounded-20-px transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200`}
           onClick={() => {
             changeLanguage("es");
           }}
@@ -65,8 +67,7 @@ export default function Profile() {
         <button
           className={`${
             language === "en" ? "bg-gray-600" : "bg-gray-500"
-          } text-white text-base font-medium transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200`}
-          style={{ borderRadius: "20px", padding: "5px 10px", width: "40%" }}
+          } text-white text-base font-medium container-profile w-40-p rounded-20-px transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200`}
           onClick={() => {
             changeLanguage("en");
           }}
@@ -104,6 +105,10 @@ export default function Profile() {
           Save Personal Data
         </button>
       </form>
+
+      <Thread title={"Aldhair Vera "} content={"A tweet is posted"}/>
+      <Thread />
+      <Thread />
     </div>
   );
 }
