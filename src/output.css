@@ -540,6 +540,50 @@ video {
   --tw-backdrop-sepia: ;
 }
 
+.avatar {
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+}
+
+.thread-outer-container {
+}
+
+.hr {
+  margin: 20px 0;
+  border-top-width: 2px;
+}
+
+.thread-container {
+  padding: 5px 10px 5px 30px;
+  border: 1px solid black;
+  border-radius: 10px;
+  min-height: 200px;
+  max-height: 200px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.reaction-container {
+  max-width: 35%;
+  width: 100%;
+}
+
+.reaction-button {
+  background-color: gray;
+  border-radius: 50%;
+  max-height: 50px;
+  max-width: 50px;
+  height: 100%;
+  min-height: 50px;
+  width: 100%;
+  color: white;
+}
+
+.container-profile {
+  padding: 5px 10px;
+}
+
 .fixed {
   position: fixed;
 }
@@ -605,6 +649,11 @@ video {
   height: 100vh;
 }
 
+.w-40-p {
+  max-width: 40%;
+  width: 100%;
+}
+
 .w-0 {
   width: 0px;
 }
@@ -637,6 +686,10 @@ video {
   flex-direction: row;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 .items-center {
   align-items: center;
 }
@@ -645,8 +698,25 @@ video {
   justify-content: space-between;
 }
 
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.mw-50 {
+  max-width: 50%;
+  width: 100%;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
 .overflow-y-auto {
   overflow-y: auto;
+}
+
+.rounded-20-px {
+  border-radius: 20px;
 }
 
 .rounded {
@@ -731,6 +801,12 @@ video {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.text-title-thread {
+  font-size: 1.25rem;
+  line-height: 2rem;
+  margin-bottom: 10px;
 }
 
 .text-2xl {
