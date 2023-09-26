@@ -9,5 +9,8 @@
     "logout": "Cerrar sesion",
     "loginWithGoogle": "Iniciar sesión con Google",
     "email": "Email",
-    "password": "Contraseña"
+    "password": "Contraseña",
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "addUser": "Añadir Usuario"
 }

@@ -9,5 +9,8 @@
     "logout": "Logout",
     "loginWithGoogle": "Login with Google",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "name": "Name",
+    "lastName": "Last Name",
+    "addUser": "Add User"
 }
