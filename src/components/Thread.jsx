@@ -25,46 +25,55 @@ export default function Thread(props) {
   const [isLiked, setIsLiked] = useState(reactions.like.isLiked);
   const [isShared, setIsShared] = useState(reactions.share.isShared);
   const [currentReactions, setCurrentReactions] = useState(reactions);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    let currentShare = { ...currentReactions.share };
+    if (loaded) {
+      let currentShare = { ...currentReactions.share };
 
-    setCurrentReactions({
-      ...currentReactions,
-      share: {
-        value: isShared ? currentShare.value + 1 : currentShare.value - 1,
-        isShared: isShared,
-      },
-    });
+      setCurrentReactions({
+        ...currentReactions,
+        share: {
+          value: isShared ? currentShare.value + 1 : currentShare.value - 1,
+          isShared: isShared,
+        },
+      });
+    }
   }, [isShared]);
 
   useEffect(() => {
-    let currentLike = { ...currentReactions.like };
+    if (loaded) {
+      let currentLike = { ...currentReactions.like };
 
-    setCurrentReactions({
-      ...currentReactions,
-      like: {
-        value: isLiked ? currentLike.value + 1 : currentLike.value - 1,
-        isLiked: isLiked,
-      },
-    });
+      setCurrentReactions({
+        ...currentReactions,
+        like: {
+          value: isLiked ? currentLike.value + 1 : currentLike.value - 1,
+          isLiked: isLiked,
+        },
+      });
+    }
   }, [isLiked]);
 
   useEffect(() => {
-    updateThreads({
-      id,
-      title,
-      content,
-      image,
-      timeStamp,
-      reactions: currentReactions,
-    });
+    if (loaded) {
+      updateThreads({
+        id,
+        title,
+        content,
+        image,
+        timeStamp,
+        reactions: currentReactions,
+      });
+    }
   }, [currentReactions]);
 
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
   return (
-    <div
-      className="w-full"
-    >
+    <div className="w-full">
       <hr className="hr" />
       <div className="flex flex-row thread-outer-container">
         <div
