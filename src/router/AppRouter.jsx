@@ -5,12 +5,14 @@ import Login from "../pages/login";
 import Profile from "../pages/Profile";
 import Register from "../pages/Register";
 import FirstLogin from "../pages/firstLogin";
+import Configuration from "../pages/Configuration";
 
 export const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         {/* <Route path="home" element={<Home />} /> */}
+        <Route path="/configuration" element={<Configuration />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/firstLogin" element={<FirstLogin />} />
 

@@ -5,7 +5,7 @@ export default function Thread(props) {
 
   const { title, content, image } = props;
   return (
-    <button
+    <div
       className="w-full"
       onClick={() => {
         console.log("FULL");
@@ -72,6 +72,6 @@ export default function Thread(props) {
           </div>
         </div>
       </div>
-    </button>
+    </div>
   );
 }

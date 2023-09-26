@@ -11,13 +11,18 @@ export function Header() {
   };
 
   const transition = {
-    type: "tween", 
+    type: "tween",
     duration: 0.2,
   };
 
   return (
     <>
-      <div className="header p-2 flex flex-row justify-between items-center sticky top-0 bg-gray-600 text-white">
+      <div
+        className="header p-2 flex flex-row justify-between items-center sticky top-0 bg-gray-600 text-white"
+        style={{
+          zIndex: 10,
+        }}
+      >
         <div
           className="profile rounded-full bg-red-400 w-12 h-12 cursor-pointer"
           onClick={() => {
@@ -35,7 +40,11 @@ export function Header() {
         <Sidebar showSidebar={showSidebar} />
       </motion.nav> */}
 
-      <motion.div animate={showSidebar ? "open" : "closed"} variants={variants} transition={transition}>
+      <motion.div
+        animate={showSidebar ? "open" : "closed"}
+        variants={variants}
+        transition={transition}
+      >
         <div
           // initial={{ opacity: 0 }}
           // animate={{ opacity: 0.5 }}

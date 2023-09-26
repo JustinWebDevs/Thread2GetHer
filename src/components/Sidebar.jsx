@@ -29,10 +29,14 @@ export function Sidebar(propSidebar) {
 
   return user ? (
     <>
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
         className={`bg-gray-800 text-white h-screen fixed top-0 left-0 overflow-y-auto transition ease-in-out delay-150 ${
           showSidebar ? "w-64" : "w-0"
-        }`}>
+        }`}
+      >
         <div className="p-4">
           <a href="#" className="text-2xl font-semibold">
             Thread2GetHer
@@ -46,15 +50,13 @@ export function Sidebar(propSidebar) {
             <Link to="profile">{t("profile")}</Link>
           </li>
           <li className="px-4 py-2 hover:bg-gray-700">
-            <a href="#" className="block">
-              Cambiar idioma
-            </a>
+            <Link to="/configuration">{t("configuration")}</Link>
           </li>
           <li className="px-4 py-2 hover:bg-gray-700" onClick={() => logOut()}>
             {t("logout")}
           </li>
         </ul>
-      </div>
+      </motion.div>
     </>
   ) : (
     <>
@@ -64,7 +66,8 @@ export function Sidebar(propSidebar) {
         transition={{ duration: 0.5 }}
         className={`bg-gray-800 text-white h-screen fixed top-0 left-0 overflow-y-auto transition ease-in-out delay-150 ${
           showSidebar ? "w-64" : "w-0"
-        }`}>
+        }`}
+      >
         <div className="p-4">
           <a href="#" className="text-2xl font-semibold">
             Thread2GetHer

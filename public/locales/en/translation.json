@@ -9,5 +9,7 @@
     "logout": "Logout",
     "loginWithGoogle": "Login with Google",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "configuration": "Configuration",
+    "description": "Description"
 }

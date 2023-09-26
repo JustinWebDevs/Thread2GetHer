@@ -9,5 +9,7 @@
     "logout": "Cerrar sesion",
     "loginWithGoogle": "Iniciar sesión con Google",
     "email": "Email",
-    "password": "Contraseña"
+    "password": "Contraseña",
+    "configuration":"Configuración",
+    "description":"Descripción"
 }
