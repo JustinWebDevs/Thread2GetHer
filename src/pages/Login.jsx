@@ -3,11 +3,27 @@ import loginWithEmail from "../functions/loginWithEmail";
 import loginWithGoogle from "../functions/loginWithGoogle.js";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase/connections";
 
 export default function Login() {
   const { t } = useTranslation(["translation"]);
 
   const history = useNavigate();
+
+  const userReview = async (userId) => {
+    try {
+      const user = await getDoc(doc(db, "users", userId));
+
+      if (user.exists()) {
+        history("/home");
+      } else {
+        history(`/firstLogin/${userId}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -17,8 +33,8 @@ export default function Login() {
 
     await loginWithEmail(email, password).then((data) => {
       const userId = data.user.uid;
-      console.log(userId);
-      history("/firstLogin", { state: userId });
+
+      userReview(userId);
     });
   };
 
