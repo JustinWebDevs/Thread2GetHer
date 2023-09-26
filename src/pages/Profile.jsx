@@ -17,6 +17,7 @@ export default function Profile() {
   const [currentUser, setCurrentUser] = useState(user);
   const [currentThread, setCurrentThread] = useState(user);
   const [postDone, setPostDone] = useState(false);
+  const [enableButton, setEnableButton] = useState(false);
 
   useEffect(() => {
     setCurrentUser(user);
@@ -48,6 +49,12 @@ export default function Profile() {
     const value = e.target.value;
     let temporalThreadData = { [e.target.name]: value };
     setCurrentThread(temporalThreadData);
+
+    if (temporalThreadData.content.length > 0) {
+      setEnableButton(true);
+    } else {
+      setEnableButton(false);
+    }
   };
 
   const saveThreadData = (e) => {
@@ -78,6 +85,7 @@ export default function Profile() {
     update();
     saveThreads(tempThread);
     setPostDone(true);
+    setEnableButton(false);
   };
 
   return (
@@ -140,8 +148,11 @@ export default function Profile() {
               className="w-full mb-4 px-4 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             />
             <button
-              className="button-add-threads mb-px"
+              className={`button-add-threads mb-px ${
+                enableButton ? "button-enable" : "button-disable"
+              }`}
               onClick={(e) => saveThreadData(e)}
+              disabled={!enableButton}
             >
               Add a thread
             </button>

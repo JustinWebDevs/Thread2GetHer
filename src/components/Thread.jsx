@@ -101,11 +101,7 @@ export default function Thread(props) {
             </h2>
             <p>
               {content ||
-                `
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-                eaque corporis quis atque praesentium sapiente consequatur fuga!
-                Error et doloremque minus magnam eius! Nihil molestiae consectetur
-                in non, voluptate dolor!`}
+                ``}
             </p>
           </div>
           <div className="flex flex-row justify-between reaction-container">

@@ -623,7 +623,6 @@ video {
 }
 
 .button-add-threads {
-  background: rgb(75, 85, 99);
   border-radius: 20px;
   padding: 5px 10px;
   display: flex;
@@ -635,6 +634,14 @@ video {
   bottom: -10px;
   margin: auto;
 }
+
+.button-enable {
+  background: rgba(75, 85, 99, 1);
+}
+.button-disable {
+  background: rgba(75, 85, 99, 0.5);
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
