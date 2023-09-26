@@ -1,32 +1,95 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getDate } from "../utils/date";
+import {
+  FaRetweet,
+  FaRegComment,
+  FaRegHeart,
+  FaHeart,
+  FaRegChartBar,
+} from "react-icons/fa";
 
 export default function Thread(props) {
   const size = 100;
 
-  const { title, content, image } = props;
+  const {
+    id,
+    title,
+    content,
+    image,
+    timeStamp,
+    deleteThread,
+    updateThreads,
+    reactions,
+  } = props;
+
+  const [isLiked, setIsLiked] = useState(reactions.like.isLiked);
+  const [isShared, setIsShared] = useState(reactions.share.isShared);
+  const [currentReactions, setCurrentReactions] = useState(reactions);
+
+  useEffect(() => {
+    let currentShare = { ...currentReactions.share };
+
+    setCurrentReactions({
+      ...currentReactions,
+      share: {
+        value: isShared ? currentShare.value + 1 : currentShare.value - 1,
+        isShared: isShared,
+      },
+    });
+  }, [isShared]);
+
+  useEffect(() => {
+    let currentLike = { ...currentReactions.like };
+
+    setCurrentReactions({
+      ...currentReactions,
+      like: {
+        value: isLiked ? currentLike.value + 1 : currentLike.value - 1,
+        isLiked: isLiked,
+      },
+    });
+  }, [isLiked]);
+
+  useEffect(() => {
+    updateThreads({
+      id,
+      title,
+      content,
+      image,
+      timeStamp,
+      reactions: currentReactions,
+    });
+  }, [currentReactions]);
+
   return (
     <div
       className="w-full"
-      onClick={() => {
-        console.log("FULL");
-      }}
     >
       <hr className="hr" />
       <div className="flex flex-row thread-outer-container">
-        <img
+        <div
           className="avatar"
           style={{
             maxHeight: `${size}px`,
             maxWidth: `${size}px`,
+            backgroundImage: `url(${
+              image ||
+              "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29kZSUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D&w=1000&q=80"
+            })`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
           }}
-          src={
-            image ||
-            `https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=`
-          }
-        />
+        ></div>
         <div className="flex flex-col w-full">
           <div className="flex flex-col thread-container">
-            <h2 className="text-title-thread">{title || "Title"}</h2>
+            <h2>
+              <span className="text-title-thread">{`${title}` || "Title"}</span>
+              {" · "}
+              <span style={{ fontSize: ".75rem", fontWeight: "500" }}>
+                {getDate(timeStamp)}
+              </span>
+            </h2>
             <p>
               {content ||
                 `
@@ -38,36 +101,46 @@ export default function Thread(props) {
           </div>
           <div className="flex flex-row justify-between reaction-container">
             <button
-              className="reaction-button"
+              className="reaction-button blue"
               onClick={() => {
                 console.log("1");
               }}
             >
-              1
+              <FaRegComment style={{ marginRight: "10px" }} />
+              {currentReactions.thread}
             </button>
             <button
-              className="reaction-button"
+              className={`reaction-button ${isShared ? "green" : "blue"}`}
               onClick={() => {
-                console.log("2");
+                setIsShared(!isShared);
+                console.log("Clicking", id);
               }}
             >
-              2
+              <FaRetweet style={{ marginRight: "10px" }} />{" "}
+              {currentReactions.share.value}
             </button>
             <button
-              className="reaction-button"
+              className="reaction-button red"
               onClick={() => {
+                setIsLiked(!isLiked);
                 console.log("3");
               }}
             >
-              3
+              {isLiked ? (
+                <FaHeart style={{ marginRight: "10px" }} />
+              ) : (
+                <FaRegHeart style={{ marginRight: "10px" }} />
+              )}{" "}
+              {currentReactions.like.value}
             </button>
             <button
-              className="reaction-button"
+              className="reaction-button blue"
               onClick={() => {
+                deleteThread(id);
                 console.log("4");
               }}
             >
-              4
+              <FaRegChartBar style={{ marginRight: "10px" }} /> {reactions.view}
             </button>
           </div>
         </div>

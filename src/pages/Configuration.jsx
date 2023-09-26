@@ -10,7 +10,7 @@ export default function Configuration() {
 
   useEffect(() => {
     setCurrentUser(user);
-    console.log(user);
+    // console.log(user);
   }, [user]);
 
   const changeLanguage = (lang) => {
@@ -26,7 +26,7 @@ export default function Configuration() {
   const handleUserData = (e) => {
     // e.preventDefault();
     const value = e.target.value;
-    let temporalUserData = { ...user, [e.target.name]: value };
+    let temporalUserData = { ...currentUser, [e.target.name]: value };
     setCurrentUser(temporalUserData);
     console.log("USER HANDLE", temporalUserData);
   };

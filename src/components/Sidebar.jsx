@@ -44,13 +44,13 @@ export function Sidebar(propSidebar) {
         </div>
         <ul className="py-4">
           <li className="px-4 py-2 hover:bg-gray-700">
-            <Link to="home">{t("home")}</Link>
+            <Link to="home" onClick={()=>propSidebar.toggleSidebar()}>{t("home")}</Link>
           </li>
           <li className="px-4 py-2 hover:bg-gray-700">
-            <Link to="profile">{t("profile")}</Link>
+            <Link to="profile" onClick={()=>propSidebar.toggleSidebar()}>{t("profile")}</Link>
           </li>
           <li className="px-4 py-2 hover:bg-gray-700">
-            <Link to="/configuration">{t("configuration")}</Link>
+            <Link to="/configuration" onClick={()=>propSidebar.toggleSidebar()}>{t("configuration")}</Link>
           </li>
           <li className="px-4 py-2 hover:bg-gray-700" onClick={() => logOut()}>
             {t("logout")}
@@ -75,10 +75,10 @@ export function Sidebar(propSidebar) {
         </div>
         <ul className="py-4">
           <li className="px-4 py-2 hover:bg-gray-700">
-            <Link to="/login">{t("login")}</Link>
+            <Link to="/login" onClick={()=>propSidebar.toggleSidebar()}>{t("login")}</Link>
           </li>
           <li className="px-4 py-2 hover:bg-gray-700">
-            <Link to="/login">{t("register")}</Link>
+            <Link to="/register" onClick={()=>propSidebar.toggleSidebar()}>{t("register")}</Link>
           </li>
         </ul>
       </motion.div>

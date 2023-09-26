@@ -6,13 +6,27 @@ import { motion } from "framer-motion";
 export function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
   const variants = {
-    open: { opacity: 1, x: 0 },
-    closed: { opacity: 0, x: "-100%" },
+    open: {
+      opacity: 1,
+      x: 0,
+      position: "relative",
+      zIndex: 2,
+    },
+    closed: {
+      opacity: 0,
+      x: "-100%",
+      position: "relative",
+      zIndex: 2,
+    },
   };
 
   const transition = {
     type: "tween",
     duration: 0.2,
+  };
+
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
   };
 
   return (
@@ -26,7 +40,7 @@ export function Header() {
         <div
           className="profile rounded-full bg-red-400 w-12 h-12 cursor-pointer"
           onClick={() => {
-            setShowSidebar(!showSidebar);
+            toggleSidebar();
           }}
         ></div>
         <h1 className=" text-2xl font-semibold">Thread2GetHer</h1>
@@ -51,11 +65,12 @@ export function Header() {
           // transition={{ duration: 0.5 }}
           className={`bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 h-screen`}
           // className={`bg-gray-900 dark:bg-opacity-80 fixed inset-0`}
+          style={{ width: "100vw", height: "100vh" }}
           onClick={() => {
-            setShowSidebar(!showSidebar);
+            toggleSidebar();
           }}
         ></div>
-        <Sidebar showSidebar={showSidebar} />
+        <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
       </motion.div>
 
       {/* <div>
