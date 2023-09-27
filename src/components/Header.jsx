@@ -6,22 +6,41 @@ import { motion } from "framer-motion";
 export function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
   const variants = {
-    open: { opacity: 1, x: 0 },
-    closed: { opacity: 0, x: "-100%" },
+    open: {
+      opacity: 1,
+      x: 0,
+      position: "relative",
+      zIndex: 2,
+    },
+    closed: {
+      opacity: 0,
+      x: "-100%",
+      position: "relative",
+      zIndex: 2,
+    },
   };
 
   const transition = {
-    type: "tween", 
+    type: "tween",
     duration: 0.2,
+  };
+
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
   };
 
   return (
     <>
-      <div className="header p-2 flex flex-row justify-between items-center sticky top-0 bg-gray-600 text-white">
+      <div
+        className="header p-2 flex flex-row justify-between items-center sticky top-0 bg-gray-600 text-white"
+        style={{
+          zIndex: 10,
+        }}
+      >
         <div
           className="profile rounded-full bg-red-400 w-12 h-12 cursor-pointer"
           onClick={() => {
-            setShowSidebar(!showSidebar);
+            toggleSidebar();
           }}
         ></div>
         <h1 className=" text-2xl font-semibold">Thread2GetHer</h1>
@@ -35,18 +54,23 @@ export function Header() {
         <Sidebar showSidebar={showSidebar} />
       </motion.nav> */}
 
-      <motion.div animate={showSidebar ? "open" : "closed"} variants={variants} transition={transition}>
+      <motion.div
+        animate={showSidebar ? "open" : "closed"}
+        variants={variants}
+        transition={transition}
+      >
         <div
           // initial={{ opacity: 0 }}
           // animate={{ opacity: 0.5 }}
           // transition={{ duration: 0.5 }}
           className={`bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 h-screen`}
           // className={`bg-gray-900 dark:bg-opacity-80 fixed inset-0`}
+          style={{ width: "100vw", height: "100vh" }}
           onClick={() => {
-            setShowSidebar(!showSidebar);
+            toggleSidebar();
           }}
         ></div>
-        <Sidebar showSidebar={showSidebar} />
+        <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
       </motion.div>
 
       {/* <div>

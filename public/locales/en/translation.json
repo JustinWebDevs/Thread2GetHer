@@ -12,5 +12,7 @@
     "password": "Password",
     "name": "Name",
     "lastName": "Last Name",
-    "addUser": "Add User"
+    "addUser": "Add User",
+    "configuration": "Configuration",
+    "description": "Description"
 }

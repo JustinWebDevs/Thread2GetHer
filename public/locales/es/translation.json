@@ -12,5 +12,7 @@
     "password": "Contraseña",
     "name": "Nombre",
     "lastName": "Apellido",
-    "addUser": "Añadir Usuario"
+    "addUser": "Añadir Usuario",
+    "configuration":"Configuración",
+    "description":"Descripción"
 }
