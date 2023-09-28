@@ -15,7 +15,7 @@ export const AppRouter = () => {
         <Route path="configuration" element={<Configuration />} />
         <Route path="profile" element={<Profile />} />
 
-        <Route path="home/" element={<Home />} />
+        <Route path="home" element={<Home />} />
       </Route>
       <Route path="/firstLogin/:userId" element={<FirstLogin />} />
 

@@ -10,9 +10,22 @@
     "loginWithGoogle": "Iniciar sesión con Google",
     "email": "Email",
     "password": "Contraseña",
-    "name": "Nombre",
-    "lastName": "Apellido",
+    
     "addUser": "Añadir Usuario",
     "configuration":"Configuración",
-    "description":"Descripción"
+    "description":"Descripción",
+    "firstLogin": {
+        "welcome": "Bienvenido",
+        "name": "Nombre",
+        "lastName": "Apellido",
+        "badData": "No se permiten espacios ni caracteres especiales! porfavor corrige la informacion",
+        "about": "Cuentanos un poco de ti",
+        "gender": "Genero",
+        "male": "Masculino",
+        "female": "Femenino",
+        "other": "Otro",
+        "choose": "Elije",
+        "born": "Fecha de nacimiento",
+        "interests": "Tus intereses"
+    }
 }

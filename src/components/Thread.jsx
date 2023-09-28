@@ -88,8 +88,7 @@ export default function Thread(props) {
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "cover",
-          }}
-        ></div>
+          }}></div>
         <div className="flex flex-col w-full">
           <div className="flex flex-col thread-container">
             <h2>
@@ -99,18 +98,14 @@ export default function Thread(props) {
                 {getDate(timeStamp)}
               </span>
             </h2>
-            <p>
-              {content ||
-                ``}
-            </p>
+            <p>{content || ``}</p>
           </div>
           <div className="flex flex-row justify-between reaction-container">
             <button
               className="reaction-button blue"
               onClick={() => {
                 console.log("1");
-              }}
-            >
+              }}>
               <FaRegComment style={{ marginRight: "10px" }} />
               {currentReactions.thread}
             </button>
@@ -119,8 +114,7 @@ export default function Thread(props) {
               onClick={() => {
                 setIsShared(!isShared);
                 console.log("Clicking", id);
-              }}
-            >
+              }}>
               <FaRetweet style={{ marginRight: "10px" }} />{" "}
               {currentReactions.share.value}
             </button>
@@ -129,8 +123,7 @@ export default function Thread(props) {
               onClick={() => {
                 setIsLiked(!isLiked);
                 console.log("3");
-              }}
-            >
+              }}>
               {isLiked ? (
                 <FaHeart style={{ marginRight: "10px" }} />
               ) : (
@@ -143,8 +136,7 @@ export default function Thread(props) {
               onClick={() => {
                 deleteThread(id);
                 console.log("4");
-              }}
-            >
+              }}>
               <FaRegChartBar style={{ marginRight: "10px" }} /> {reactions.view}
             </button>
           </div>

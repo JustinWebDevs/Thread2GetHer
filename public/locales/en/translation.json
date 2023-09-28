@@ -10,9 +10,21 @@
     "loginWithGoogle": "Login with Google",
     "email": "Email",
     "password": "Password",
-    "name": "Name",
-    "lastName": "Last Name",
     "addUser": "Add User",
     "configuration": "Configuration",
-    "description": "Description"
+    "description": "Description",
+    "firstLogin": {
+        "welcome": "Welcome",
+        "name": "Name",
+        "lastName": "Last Name",
+        "badData": "Spaces and special characters are not allowed. Please correct the information.",
+        "about": "Tell us a bit about yourself",
+        "gender": "Gender",
+        "male": "Male",
+        "female": "Female",
+        "other": "Other",
+        "choose": "Choose",
+        "born": "Date of Birth",
+        "interests": "Your Interests"
+    }
 }
