@@ -26,6 +26,7 @@ function ThreadProvider({ children }) {
     let orderedThreads =
       jsonTodos !== null ? jsonTodos.sort(compareTimestampsDESC) : [];
 
+    // console.log(orderedThreads);
     if (storedThreads) {
       setThreads(orderedThreads);
     }
@@ -48,8 +49,8 @@ function ThreadProvider({ children }) {
       thread.id === updatedThread.id ? updatedThread : thread
     );
     saveThreads(updatedThreads);
-    console.log("THREADS:",updatedThreads)
-    console.log(updatedThread)
+    console.log("THREADS:", updatedThreads);
+    console.log(updatedThread);
 
     update();
   };
@@ -73,8 +74,7 @@ function ThreadProvider({ children }) {
         updateThreads,
         deleteThread,
         update,
-      }}
-    >
+      }}>
       {children}
     </ThreadContext.Provider>
   );
