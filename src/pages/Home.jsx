@@ -11,6 +11,9 @@ export default async function Home() {
   // const { user } = useContext(UserContext);
 
   // const { name, lastName } = splitName(userId);
+  
+  // Todo : esta consulta o no trae los datos correctamente o hay algo afectandolo
+  // cuando cargo este archivo en la consola llegan varios errores diferentes, no se de donde provienen 
 
   const threads = await getDocs(collection(db, "users"));
     console.log(threads)
