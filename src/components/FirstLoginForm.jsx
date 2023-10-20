@@ -3,10 +3,14 @@ import { db } from "../firebase/connections";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+
 // import { InterestsCard } from "./interestsCard";
 
 export function FirstLoginForm(userId) {
   const { t } = useTranslation(["translation"]);
+  const history = useNavigate();
+
 
   const [progress, setProgress] = useState(0);
   const [name, setName] = useState("");
@@ -86,7 +90,7 @@ export function FirstLoginForm(userId) {
   };
 
   const thirdStep = () => {
-    if (isValidData(name) && isValidData(lastName)) setProgress(progress + 1);
+    if (interest.length > 0) setProgress(progress + 1);
   };
 
   const addToArray = (x) => {
@@ -112,7 +116,7 @@ export function FirstLoginForm(userId) {
             : "w-full"
         } self-start h-2 rounded-full bg-gradient-to-r from-gray-100 to-gray-300 mb-4 lg:mb-8 transition-all`}></div>
 
-      <form onSubmit={addUser} className="my-4">
+      <form className="my-4">
         {/* Primer Form */}
         <h1
           className={` ${
@@ -220,15 +224,15 @@ export function FirstLoginForm(userId) {
           <div className="flex align-baseline m-2">
             {/* <InterestsCard /> */}
             <div className="flex">
-              <input type="checkbox" name="interest" value="1" onClick={() => {addToArray(1)}} />
+              <input type="checkbox" name="interest" value="1" onClick={(e) => {addToArray(1)}} />
               <label className="ml-2">Cine</label>
             </div>
             <div className="flex">
-              <input type="checkbox" name="interest" value="2" onClick={() => {addToArray(2)}} />
+              <input type="checkbox" name="interest" value="2" onClick={(e) => {addToArray(2)}} />
               <label className="ml-2">Musica</label>
             </div>
             <div className="flex">
-              <input type="checkbox" name="interest" value="3" onClick={() => {addToArray(3)}} />
+              <input type="checkbox" name="interest" value="3" onClick={(e) => {addToArray(3)}} />
               <label className="ml-2">Mascotas</label>
             </div>
           </div>

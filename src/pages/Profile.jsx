@@ -4,6 +4,8 @@ import { UserContext } from "../context/userContext";
 import { ThreadContext } from "../context/threadContext";
 import Thread from "../components/Thread";
 import { v4 as uuidv4 } from "uuid";
+import { db } from "../firebase/connections";
+import { collection, addDoc } from "firebase/firestore"; 
 
 const imageSize = 120;
 
@@ -18,6 +20,8 @@ export default function Profile() {
   const [currentThread, setCurrentThread] = useState(user);
   const [postDone, setPostDone] = useState(false);
   const [enableButton, setEnableButton] = useState(false);
+
+  console.log(threads);
 
   useEffect(() => {
     setCurrentUser(user);
@@ -57,18 +61,18 @@ export default function Profile() {
     }
   };
 
-  const saveThreadData = (e) => {
+  const saveThreadData = async (e) => {
     e.preventDefault();
     const uniqueId = uuidv4();
     const currentTimestamp = Date.now();
     // const currentDate = new Date(currentTimestamp);
 
-    let tempThread = {
+    const tempThread = {
       id: uniqueId,
       title: `${user.name} ${user.lastName}`,
       content: currentThread.content,
       timeStamp: currentTimestamp,
-      image: user.image,
+      image: user.image ? user.image : "",
       reactions: {
         thread: Math.floor(Math.random() * 10 + 1),
         share: {
@@ -82,6 +86,17 @@ export default function Profile() {
         view: Math.floor(Math.random() * 10 + 1),
       },
     };
+
+    try{
+      const docRef = await addDoc(collection(db, "threads"),  {
+        tempThread
+    });
+      alert("Thread guardado ");
+  } catch (e){
+    console.log(e);
+    alert("Error ",e);
+  }
+
     update();
     saveThreads(tempThread);
     setPostDone(true);

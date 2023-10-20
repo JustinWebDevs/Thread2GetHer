@@ -598,6 +598,10 @@ video {
   margin-bottom: 1px;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -608,10 +612,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.ml-2 {
-  margin-left: 0.5rem;
 }
 
 .block {
