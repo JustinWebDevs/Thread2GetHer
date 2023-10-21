@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Layout } from "../components/Layout";
-import Home from "../pages/home";
+// import Home from "../pages/Home";
+import Extra from "../pages/Extra";
 import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 import Register from "../pages/Register";
@@ -15,7 +16,8 @@ export const AppRouter = () => {
         <Route path="configuration" element={<Configuration />} />
         <Route path="profile" element={<Profile />} />
 
-        <Route path="home/" element={<Home />} />
+        {/* <Route path="home" element={<Home />} /> */}
+        <Route path="home" element={<Extra />} />
       </Route>
       <Route path="/firstLogin/:userId" element={<FirstLogin />} />
 
