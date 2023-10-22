@@ -5,7 +5,10 @@ import { ThreadContext } from "../context/threadContext";
 import Thread from "../components/Thread";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "../firebase/connections";
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc, doc, getDoc } from "firebase/firestore"; 
+import {auth} from "../firebase/connections"
+import { onAuthStateChanged } from "firebase/auth";
+import { data } from "autoprefixer";
 
 const imageSize = 120;
 
@@ -20,13 +23,51 @@ export default function Profile() {
   const [currentThread, setCurrentThread] = useState(user);
   const [postDone, setPostDone] = useState(false);
   const [enableButton, setEnableButton] = useState(false);
+  const [name, setName] = useState('');
 
-  console.log(threads);
+
+  const getUserData = async () => {
+    const docRes = await getDoc(doc(db, "users", currentUser.uid))
+
+    const data = {
+      first: docRes.data().first,
+      last: docRes.data().last
+    }
+
+    return data
+  }
+  useEffect(() => {
+    onAuthStateChanged(auth, (userAuth) => {
+      if (!userAuth) {
+        history(`/home`);
+      }else{
+        setCurrentUser(userAuth)
+      }
+    });
+  }, []);
 
   useEffect(() => {
-    setCurrentUser(user);
-    // console.log(user);
-  }, [user]);
+    const fetchData = async () => {
+      if (currentUser.displayName) {
+        setName(currentUser.displayName);
+      } else {
+        try {
+          const userData = await getUserData();
+          console.log(userData);
+          setName(`${userData.first} ${userData.last}`);
+        } catch (error) {
+          console.error("Error al obtener datos del usuario:", error);
+        }
+      }
+    }
+  
+    fetchData();
+  }, [currentUser]);
+
+  // useEffect(() => {
+  //   setCurrentUser(user);
+  //   // console.log(user);
+  // }, [user]);
 
   useEffect(() => {
     if (postDone) {
@@ -69,7 +110,7 @@ export default function Profile() {
 
     const tempThread = {
       id: uniqueId,
-      title: `${user.name} ${user.lastName}`,
+      title: name,
       content: currentThread.content,
       timeStamp: currentTimestamp,
       image: user.image ? user.image : "",
@@ -88,8 +129,24 @@ export default function Profile() {
     };
 
     try{
-      const docRef = await addDoc(collection(db, "threads"),  {
-        tempThread
+      await addDoc(collection(db, "threads"),  {
+        id: uniqueId,
+        title: name,
+      content: currentThread.content,
+      timeStamp: currentTimestamp,
+      image: user.image ? user.image : "",
+      reactions: {
+        thread: Math.floor(Math.random() * 10 + 1),
+        share: {
+          value: Math.floor(Math.random() * 10 + 1),
+          isShared: false,
+        },
+        like: {
+          value: Math.floor(Math.random() * 10 + 1),
+          isLiked: false,
+        },
+        view: Math.floor(Math.random() * 10 + 1),
+      },
     });
       alert("Thread guardado ");
   } catch (e){

@@ -58,7 +58,7 @@ export function FirstLoginForm(userId) {
     e.preventDefault();
 
     try {
-      await setDoc(doc(db, `users/${userId}`), {
+      await setDoc(doc(db, `users/${userId.userId}`), {
         first: name,
         last: lastName,
         born: born,

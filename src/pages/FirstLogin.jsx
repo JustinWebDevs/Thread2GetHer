@@ -25,7 +25,7 @@ export default function FirstLogin() {
 
   return (
     <>
-      <FirstLoginForm />
+      <FirstLoginForm userId={userId}/>
     </>
   );
 }
