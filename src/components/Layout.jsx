@@ -10,15 +10,12 @@ export const Layout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // if (!isLoggedIn()) {
-    //   navigate("/login", { replace: true });
-    // }
     const user = localStorage.getItem("user");
 
     if (user) {
-      navigate("/login", { replace: true });
-    } else {
       navigate("/home", { replace: true });
+    } else {
+      navigate("/login", { replace: true });
     }
   }, []);
 
