@@ -5,7 +5,7 @@ import Extra from "../pages/Extra";
 import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 import Register from "../pages/Register";
-import FirstLogin from "../pages/firstLogin";
+import FirstLogin from "../pages/FirstLogin";
 import Configuration from "../pages/Configuration";
 
 export const AppRouter = () => {
