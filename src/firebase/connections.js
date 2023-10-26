@@ -12,7 +12,7 @@ const firebaseConfig = {
   storageBucket: "thread2gether-b0b77.appspot.com",
   messagingSenderId: "735879433653",
   appId: "1:735879433653:web:eae74af7b84649d298ddfc",
-  measurementId: "G-6ZSM6N3XWH",
+  measurementId: "G-6ZSM6N3XWH"
 };
 
 const app = initializeApp(firebaseConfig);

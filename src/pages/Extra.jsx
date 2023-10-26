@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/connections";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import Thread from "../components/Thread"
+import { ThreadContext } from "../context/threadContext";
+import CreateThread from "../components/CreateThread";
+
 
 export default function Extra() {
 
   const [threadInfo, setThreadInfo] = useState();
+
+  const { threads, saveThreads, update, deleteThread, updateThreads } =
+    useContext(ThreadContext);
 
   const getThreads = async () => {
       const threadInfoElement = [];
@@ -27,6 +33,7 @@ export default function Extra() {
 
   return (
     <div>
+      <CreateThread/>
       {threadInfo ? (
         threadInfo.map((item, index) => (
           <Thread
@@ -36,8 +43,8 @@ export default function Extra() {
             content={item.data().content}
             image={item.data().image}
             timeStamp={item.data().timeStamp}
-            deleteThread={null}
-            updateThreads={null}
+            deleteThread={deleteThread}
+            updateThreads={updateThreads}
             reactions={item.data().reactions}
           />
         ))

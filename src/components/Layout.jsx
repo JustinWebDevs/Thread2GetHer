@@ -9,15 +9,15 @@ import { useEffect } from "react";
 export const Layout = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const user = localStorage.getItem("user");
+  // useEffect(() => {
+  //   const user = localStorage.getItem("user");
 
-    if (user) {
-      navigate("/home", { replace: true });
-    } else {
-      navigate("/login", { replace: true });
-    }
-  }, []);
+  //   if (user) {
+  //     navigate("/home", { replace: true });
+  //   } else {
+  //     navigate("/login", { replace: true });
+  //   }
+  // }, []);
 
   return (
     <>

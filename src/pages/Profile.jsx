@@ -115,16 +115,16 @@ export default function Profile() {
       timeStamp: currentTimestamp,
       image: user.image ? user.image : "",
       reactions: {
-        thread: Math.floor(Math.random() * 10 + 1),
+        thread: 0,
         share: {
-          value: Math.floor(Math.random() * 10 + 1),
+          value: 0,
           isShared: false,
         },
         like: {
-          value: Math.floor(Math.random() * 10 + 1),
+          value: 0,
           isLiked: false,
         },
-        view: Math.floor(Math.random() * 10 + 1),
+        view: 0,
       },
     };
 
