@@ -7,8 +7,10 @@ import {
   FaHeart,
   FaRegChartBar,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function Thread(props) {
+  const history = useNavigate();
   const size = 100;
 
   const {
@@ -72,10 +74,14 @@ export default function Thread(props) {
     setLoaded(true);
   }, []);
 
+  const expandThread = (threadId) => {
+    history(`/threadExpanded/${threadId}`);
+  }
+
   return (
     <div className="w-full">
       <hr className="hr" />
-      <div className="flex flex-row thread-outer-container">
+      <div className="flex flex-row thread-outer-container" >
         <div
           className="avatar"
           style={{
@@ -90,7 +96,7 @@ export default function Thread(props) {
             backgroundSize: "cover",
           }}></div>
         <div className="flex flex-col w-full">
-          <div className="flex flex-col thread-container">
+          <div className="flex flex-col thread-container" onClick={() => {expandThread(id)}}>
             <h2>
               <span className="text-title-thread">{`${title}` || "Title"}</span>
               {" · "}

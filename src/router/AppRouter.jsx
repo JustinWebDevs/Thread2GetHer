@@ -7,6 +7,7 @@ import Profile from "../pages/Profile";
 import Register from "../pages/Register";
 import FirstLogin from "../pages/FirstLogin";
 import Configuration from "../pages/Configuration";
+import ThreadExpanded from "../pages/ThreadExpanded";
 
 export const AppRouter = () => {
   return (
@@ -19,7 +20,9 @@ export const AppRouter = () => {
         {/* <Route path="home" element={<Home />} /> */}
         <Route path="home" element={<Extra />} />
       </Route>
+      
       <Route path="/firstLogin/:userId" element={<FirstLogin />} />
+      <Route path="/threadExpanded/:threadId" element={<ThreadExpanded />} />
 
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
