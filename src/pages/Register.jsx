@@ -3,6 +3,9 @@ import registerUser from "../functions/registerUser";
 import loginWithGoogle from "../functions/loginWithGoogle.js";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import {doc, getDoc} from "firebase/firestore";
+import { db } from "../firebase/connections";
+
 
 export default function Register() {
   const { t } = useTranslation(["translation"]);
@@ -17,6 +20,20 @@ export default function Register() {
 
     await registerUser(email, password);
     history("/login");
+  };
+
+  const userReview = async (userId) => {
+    try {
+      const user = await getDoc(doc(db, "users", userId));
+
+      if (user.exists()) {
+        history("/home");
+      } else {
+        history(`/firstLogin/${userId}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -54,7 +71,9 @@ export default function Register() {
       <button
         onClick={async () =>
           loginWithGoogle().then(() => {
-            history("/profile");
+            const userId = data.user.uid;
+
+            userReview(userId);
           })
         }
         className="text-blue-500 cursor-pointer block mt-2"

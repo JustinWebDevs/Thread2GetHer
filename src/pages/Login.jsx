@@ -71,7 +71,7 @@ export default function Login() {
       <button
         onClick={async () =>
           loginWithGoogle().then(() => {
-            history("/profile");
+            history("/home");
           })
         }
         className="text-blue-500 cursor-pointer block mt-2">

@@ -80,74 +80,71 @@ export default function Thread(props) {
 
   return (
     <div className="w-full">
-      <hr className="hr" />
-      <div className="flex flex-row thread-outer-container" >
-        <div
-          className="avatar"
-          style={{
-            maxHeight: `${size}px`,
-            maxWidth: `${size}px`,
-            backgroundImage: `url(${
-              image ||
-              "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29kZSUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D&w=1000&q=80"
-            })`,
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-          }}></div>
+      <hr className="border-t border-gray-400 my-4" />
+      <div className="flex flex-row p-4">
+        <div className="avatar" style={{ maxHeight: `${size}px`, maxWidth: `${size}px` }}>
+          <div
+            style={{
+              backgroundImage: `url(${
+                image ||
+                "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29kZSUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D&w=1000&q=80"
+              })`,
+            }}
+            className="h-full w-full bg-center bg-cover bg-no-repeat"
+          ></div>
+        </div>
         <div className="flex flex-col w-full">
-          <div className="flex flex-col thread-container" onClick={() => {expandThread(id)}}>
-            <h2>
-              <span className="text-title-thread">{`${title}` || "Title"}</span>
-              {" · "}
-              <span style={{ fontSize: ".75rem", fontWeight: "500" }}>
-                {getDate(timeStamp)}
-              </span>
+          <div className="p-4 bg-white shadow-md rounded-lg cursor-pointer" onClick={() => { expandThread(id) }}>
+            <h2 className="text-lg text-title-thread font-bold">
+              {`${title}` || "Title"} ·{" "}
+              <span className="text-sm font-semibold">{getDate(timeStamp)}</span>
             </h2>
-            <p>{content || ``}</p>
+            <p className="mt-2">{content || ""}</p>
           </div>
-          <div className="flex flex-row justify-between reaction-container">
-            <button
-              className="reaction-button blue"
-              onClick={() => {
-                console.log("1");
-              }}>
-              <FaRegComment style={{ marginRight: "10px" }} />
-              {currentReactions.thread}
-            </button>
-            <button
-              className={`reaction-button ${isShared ? "green" : "blue"}`}
-              onClick={() => {
-                setIsShared(!isShared);
-                console.log("Clicking", id);
-              }}>
-              <FaRetweet style={{ marginRight: "10px" }} />{" "}
-              {currentReactions.share.value}
-            </button>
-            <button
-              className="reaction-button red"
-              onClick={() => {
-                setIsLiked(!isLiked);
-                console.log("3");
-              }}>
-              {isLiked ? (
-                <FaHeart style={{ marginRight: "10px" }} />
-              ) : (
-                <FaRegHeart style={{ marginRight: "10px" }} />
-              )}{" "}
-              {currentReactions.like.value}
-            </button>
-            <button
-              className="reaction-button blue"
-              onClick={() => {
-                deleteThread(id);
-                console.log("4");
-              }}>
-              <FaRegChartBar style={{ marginRight: "10px" }} /> {reactions.view}
-            </button>
+          <div className="p-4 bg-gray-100 mt-4 rounded-b-lg">
+            <div className="flex flex-row justify-between reaction-container">
+              <button
+                className="reaction-button blue"
+                onClick={() => {
+                  console.log("1");
+                }}
+              >
+                <FaRegComment style={{ marginRight: "10px" }} />
+                {currentReactions.thread}
+              </button>
+              <button
+                className={`reaction-button ${isShared ? "green" : "blue"}`}
+                onClick={() => {
+                  setIsShared(!isShared);
+                  console.log("Clicking", id);
+                }}
+              >
+                <FaRetweet style={{ marginRight: "10px" }} /> {currentReactions.share.value}
+              </button>
+              <button
+                className="reaction-button red"
+                onClick={() => {
+                  setIsLiked(!isLiked);
+                  console.log("3");
+                }}
+              >
+                {isLiked ? <FaHeart style={{ marginRight: "10px" }} /> : <FaRegHeart style={{ marginRight: "10px" }} />}{" "}
+                {currentReactions.like.value}
+              </button>
+              <button
+                className="reaction-button blue"
+                onClick={() => {
+                  deleteThread(id);
+                  console.log("4");
+                }}
+              >
+                <FaRegChartBar style={{ marginRight: "10px" }} /> {reactions.view}
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   );
 }

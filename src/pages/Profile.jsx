@@ -15,7 +15,7 @@ const imageSize = 120;
 export default function Profile() {
   const { t } = useTranslation(["translation"]);
 
-  const { user, saveUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { threads, saveThreads, update, deleteThread, updateThreads } =
     useContext(ThreadContext);
 
@@ -53,7 +53,6 @@ export default function Profile() {
       } else {
         try {
           const userData = await getUserData();
-          console.log(userData);
           setName(`${userData.first} ${userData.last}`);
         } catch (error) {
           console.error("Error al obtener datos del usuario:", error);
