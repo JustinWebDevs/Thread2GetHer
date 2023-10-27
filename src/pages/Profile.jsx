@@ -202,8 +202,8 @@ export default function Profile() {
             />
           </div>
 
-          <h2 className="text-3xl font-bold mb-3 text-center">
-            {currentUser.name} {currentUser.lastName}
+          <h2 className="text-3xl font-bold mb-3 text-center text-gray-800">
+            {name}
           </h2>
 
           <h3 className="text-xl text-center mb-4">
